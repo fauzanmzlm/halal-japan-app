@@ -57,6 +57,22 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int _selectedIndex = 0;
+
+  static const List<Widget> _pages = <Widget>[
+    ProductPage(),
+    RestaurantPage(),
+    MenuPage(),
+    RecipePage(),
+    InfoPage(),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -75,39 +91,110 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      body: const Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(mainAxisAlignment: MainAxisAlignment.center),
-      ),
+      body: _pages.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
         showSelectedLabels: true,
         showUnselectedLabels: true,
         type: BottomNavigationBarType.fixed,
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
         selectedItemColor: Colors.amber,
         unselectedItemColor: Colors.blueGrey,
         items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
+          BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart), // Changed icon for 'Product'
             label: 'Product',
-            ),
+          ),
           BottomNavigationBarItem(
             icon: Icon(Icons.restaurant),
             label: 'Restaurant',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.menu_book),
-            label: 'Menu',
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.menu_book), label: 'Menu'),
           BottomNavigationBarItem(
             icon: Icon(Icons.receipt_long),
             label: 'Recipe',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.info),
-            label: 'Info',
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.info), label: 'Info'),
         ],
+      ),
+    );
+  }
+}
+
+//make new widget for the product page
+class ProductPage extends StatelessWidget {
+  const ProductPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text('Product Page', style: TextStyle(fontSize: 24)),
+        ],
+      ),
+    );
+  }
+}
+
+//make new widget for the restaurant page
+class RestaurantPage extends StatelessWidget {
+  const RestaurantPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text('Restaurant Page', style: TextStyle(fontSize: 24)),
+        ],
+      ),
+    );
+  }
+}
+
+//make new widget for the menu page
+class MenuPage extends StatelessWidget {
+  const MenuPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[Text('Menu Page', style: TextStyle(fontSize: 24))],
+      ),
+    );
+  }
+}
+
+//make new widget for the recipe page
+class RecipePage extends StatelessWidget {
+  const RecipePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[Text('Recipe Page', style: TextStyle(fontSize: 24))],
+      ),
+    );
+  }
+}
+
+//make new widget for the info page
+class InfoPage extends StatelessWidget {
+  const InfoPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[Text('Info Page', style: TextStyle(fontSize: 24))],
       ),
     );
   }
